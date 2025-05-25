@@ -117,10 +117,11 @@ export default function Component() {
           </CardHeader>
         </Card>
 
-        {/* Controles */}
+        {/* Placar */}
         <Card className="border-none shadow-md">
           <CardContent className="pt-6">
-            <div className="flex justify-end">
+            <div className="flex justify-between items-center mb-4">
+              <div className="font-semibold text-lg">Placar</div>
               <Button 
                 onClick={resetScore} 
                 variant="outline" 
@@ -131,12 +132,6 @@ export default function Component() {
                 Reiniciar Placar
               </Button>
             </div>
-          </CardContent>
-        </Card>
-
-        {/* Placar */}
-        <Card className="border-none shadow-md">
-          <CardContent className="pt-6">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
                 <Badge variant="default" className="bg-green-500 hover:bg-green-600 text-base px-4 py-2">
@@ -188,6 +183,18 @@ export default function Component() {
                 {result && <div className="mt-4 text-lg font-semibold animate-pulse">{getResultMessage()}</div>}
                 {isPlaying && (
                   <div className="mt-4 text-sm text-muted-foreground animate-pulse">Computador pensando...</div>
+                )}
+                {/* Botão Nova Rodada dentro do card da arena */}
+                {result && (
+                  <div className="mt-6">
+                    <Button 
+                      onClick={resetGame} 
+                      size="lg"
+                      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                    >
+                      Nova Rodada
+                    </Button>
+                  </div>
                 )}
               </div>
 
@@ -242,19 +249,6 @@ export default function Component() {
             </div>
           </CardContent>
         </Card>
-
-        {/* Botão Nova Rodada */}
-        {result && (
-          <div className="text-center">
-            <Button 
-              onClick={resetGame} 
-              size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-            >
-              Nova Rodada
-            </Button>
-          </div>
-        )}
       </div>
     </div>
   )
