@@ -10,6 +10,8 @@ const nextConfig = {
     unoptimized: true,
   },
   output: "export",
+  basePath: "/JokenP-",
+  assetPrefix: "/JokenP-/",
 }
 
 export default nextConfig
