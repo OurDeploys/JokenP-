@@ -108,20 +108,25 @@ export default function Component() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-4">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
-        <Card>
-          <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <Card className="overflow-hidden border-none shadow-lg">
+          <CardHeader className="text-center bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-8">
+            <CardTitle className="text-4xl font-bold text-white animate-pulse">
               Jokenpô
             </CardTitle>
-            <p className="text-muted-foreground">Pedra, Papel e Tesoura</p>
+            <p className="text-white/80 text-lg mt-2">Pedra, Papel e Tesoura</p>
           </CardHeader>
         </Card>
 
         {/* Controles */}
-        <Card>
+        <Card className="border-none shadow-md">
           <CardContent className="pt-6">
             <div className="flex justify-end">
-              <Button onClick={resetScore} variant="outline" size="sm">
+              <Button 
+                onClick={resetScore} 
+                variant="outline" 
+                size="sm"
+                className="bg-white hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+              >
                 <RotateCcw className="h-4 w-4 mr-2" />
                 Reiniciar Placar
               </Button>
@@ -130,26 +135,30 @@ export default function Component() {
         </Card>
 
         {/* Placar */}
-        <Card>
+        <Card className="border-none shadow-md">
           <CardContent className="pt-6">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <Badge variant="default" className="bg-green-500 hover:bg-green-600">
+                <Badge variant="default" className="bg-green-500 hover:bg-green-600 text-base px-4 py-2">
                   Vitórias: {score.wins}
                 </Badge>
               </div>
               <div>
-                <Badge variant="secondary">Empates: {score.ties}</Badge>
+                <Badge variant="secondary" className="text-base px-4 py-2">
+                  Empates: {score.ties}
+                </Badge>
               </div>
               <div>
-                <Badge variant="destructive">Derrotas: {score.losses}</Badge>
+                <Badge variant="destructive" className="text-base px-4 py-2">
+                  Derrotas: {score.losses}
+                </Badge>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Arena do Jogo */}
-        <Card>
+        <Card className="border-none shadow-md">
           <CardContent className="pt-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
               {/* Jogador */}
@@ -161,7 +170,7 @@ export default function Component() {
                       const choiceIcon = getChoiceIcon(playerChoice)
                       if (choiceIcon) {
                         const IconComponent = choiceIcon.icon
-                        return <IconComponent className={`h-16 w-16 ${choiceIcon.color}`} />
+                        return <IconComponent className={`h-16 w-16 ${choiceIcon.color} animate-bounce`} />
                       }
                       return <div className="h-16 w-16 bg-gray-200 rounded-full" />
                     })()
@@ -195,7 +204,7 @@ export default function Component() {
                       const choiceIcon = getChoiceIcon(computerChoice)
                       if (choiceIcon) {
                         const IconComponent = choiceIcon.icon
-                        return <IconComponent className={`h-16 w-16 ${choiceIcon.color}`} />
+                        return <IconComponent className={`h-16 w-16 ${choiceIcon.color} animate-bounce`} />
                       }
                       return <div className="h-16 w-16 bg-gray-200 rounded-full" />
                     })()
@@ -211,7 +220,7 @@ export default function Component() {
         </Card>
 
         {/* Botões de Escolha */}
-        <Card>
+        <Card className="border-none shadow-md">
           <CardContent className="pt-6">
             <h3 className="text-center text-lg font-semibold mb-4">Faça sua escolha:</h3>
             <div className="grid grid-cols-3 gap-4">
@@ -222,7 +231,7 @@ export default function Component() {
                     key={choice.value}
                     onClick={() => handleChoice(choice.value)}
                     disabled={isPlaying}
-                    className="h-20 flex flex-col gap-2 hover:scale-105 transition-transform"
+                    className="h-20 flex flex-col gap-2 hover:scale-105 transition-transform bg-white hover:bg-gray-50"
                     variant="outline"
                   >
                     <IconComponent className={`h-8 w-8 ${choice.color}`} />
@@ -237,7 +246,11 @@ export default function Component() {
         {/* Botão Nova Rodada */}
         {result && (
           <div className="text-center">
-            <Button onClick={resetGame} size="lg">
+            <Button 
+              onClick={resetGame} 
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
               Nova Rodada
             </Button>
           </div>
